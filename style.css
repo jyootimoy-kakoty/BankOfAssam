@@ -1,0 +1,79 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+  }
+  
+  html {
+    font-size: 62.5%;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 300;
+    color: #444;
+    line-height: 1.9;
+    background-color: #f3f3f3;
+  }
+  
+  .banner {
+      margin: 1rem;
+      
+  }
+
+  .banner-items * {
+      display: inline-block;
+      justify-content: center;
+  }
+
+  .banner-items h1 {
+        margin: 1.5rem;
+        margin-left: 2.5rem;
+        padding: 0;
+        width: 30%;
+        vertical-align: top;
+  }
+
+  .BankOfAssam__logo {
+        padding-left: 8%;
+        padding-right: 8%;
+        max-width: 30%;
+        align-items: center;/*margin: auto;*/
+  }
+
+  .logIn__form {
+        margin: 1.5rem;
+        margin-right: 0;
+        width: 33%;
+        vertical-align: top;
+  }
+
+  .logIn__form input {
+        width: 35%;
+        height: 35px;
+        margin-left: 2%;
+        float: right;
+        border: 2px solid blueviolet; 
+        background-color: #ffffff;
+        text-align: center;
+        outline: darkgreen;
+  }
+
+  .logIn__form button {
+        width: 10%;
+        height: 30px;
+        margin-left: 2%;
+        float: right;
+        border: 2px solid #f3f3f3;
+        outline: darkgreen;
+  }
+
+  .logOutBtn {
+        width: 10%;
+        height: 30px;
+        margin-left: 2%;
+        float: right;
+        border: 2px solid #f3f3f3;
+        outline: darkgreen;
+  }
