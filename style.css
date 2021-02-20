@@ -103,15 +103,17 @@ body {
 
 .transactions {
       margin: 2.5rem;
-      width: 50%;
-      height: 100px;
+      width: 55%;
+      height: 300px;
+      display: inline-block;
+      overflow: scroll;
 }
 
 .row {
       margin-left: 2.5rem;
       margin-right: 2.5rem;
       margin-bottom: .5rem;
-      width: 50%;
+      
       background-color: white;
       border-radius: 2px;
 }
@@ -120,7 +122,7 @@ body {
       margin-top: .5rem;
       padding-left: 1rem;
       font-size: 1.5rem;
-      width: 20%;
+      width: 16%;
       border-radius: 4px;
       background-color: rgb(11, 221, 11);
       color: white;
@@ -131,18 +133,72 @@ body {
       margin-top: .5rem;
       padding-left: 1rem;
       font-size: 1.5rem;
-      width: 20%;
+      width: 16%;
       border-radius: 4px;
       background-color: rgb(253, 24, 70);
       color: white;
       display: inline-block;
 }
 
+.transDate {
+      padding-right: 10rem;
+      font-size: 1.5rem;
+      height: 40px;
+      width: 60%;
+      display: inline-block;
+      text-align: right;
+      vertical-align: bottom; 
+}
+
 .value {
       font-size: 1.75rem;
       height: 40px;
-      width: 70%;
+      width: 20%;
       display: inline-block;
       text-align: right;
       vertical-align: top;
+}
+
+.transfer {
+      margin-top: 2.5rem;
+      width: 40%;
+      height: 200px;
+      vertical-align: top;
+      display: inline-block;
+      border-radius: 4px;
+      background-color: rgb(247, 176, 44);
+      
+}
+
+.Transfer__form {
+      margin: 1.5rem;
+      vertical-align: middle;
+}
+
+.Transfer__form input {
+      width: 30%;
+      height: 35px;
+      margin: 2rem;
+      margin-left: 2rem;
+      margin-right: 2rem;
+      float: right;
+      border: 2px solid white; 
+      border-radius: 4px;
+      background-color: rgb(252, 193, 85);
+      text-align: center;
+      color: white;
+      font-size: 2rem;
+      outline: darkgreen;
+}
+
+.Transfer__form button {
+      width: 10%;
+      height: 30px;
+      margin: 2rem;
+      margin-left: 2rem;
+      margin-right: 2rem;
+      border-radius: 4px;
+      float: right;
+      border: 2px solid #f3f3f3;
+      outline: darkgreen;
 }
