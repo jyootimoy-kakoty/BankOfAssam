@@ -108,7 +108,7 @@ body {
       display: inline-block;
       
       border-radius: 8px;
-      /*overflow: scroll;*/
+      overflow: auto; /*scroll;*/
 }
 
 .row {
