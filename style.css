@@ -32,6 +32,7 @@ body {
       margin-left: 2.5rem;
       padding: 0;
       width: 30%;
+      font-size: 1.75rem;
       vertical-align: top;
       }
 
@@ -62,20 +63,24 @@ body {
 
 .logIn__form button {
       width: 10%;
-      height: 30px;
+      height: 40px;
       margin-left: 2%;
+      font-size: 2rem;
       float: right;
       border: 2px solid #f3f3f3;
       outline: darkgreen;
+      vertical-align: top;
 }
 
 .logOutBtn {
       width: 10%;
-      height: 30px;
+      height: 40px;
       margin-left: 2%;
+      font-size: 2rem;
       float: right;
       border: 2px solid #f3f3f3;
       outline: darkgreen;
+      vertical-align: top;
 }
 
 .summary {
@@ -104,11 +109,11 @@ body {
 .transactions {
       margin: 2.5rem;
       width: 55%;
-      height: 500px;
+      height: 400px;
       display: inline-block;
       
       border-radius: 8px;
-      overflow: auto; /*scroll;*/
+      overflow: scroll;/*auto; /*scroll;*/
 }
 
 .row {
@@ -208,6 +213,7 @@ body {
       margin-left: 2rem;
       margin-right: 2rem;
       margin-bottom: 1rem;
+      font-size: 2rem;
       border-radius: 4px;
       float: right;
       border: 2px solid #f3f3f3;
@@ -254,7 +260,51 @@ body {
       margin-left: 2rem;
       margin-right: 2rem;
       border-radius: 4px;
+      font-size: 2rem;
       float: right;
       border: 2px solid #f3f3f3;
+      outline: darkgreen;
+}
+
+.views {
+      height: 200px;
+      width: 100%;
+      vertical-align: top;
+      display: inline-block;     
+}
+
+.TotalDeposit{
+      padding-left: 1rem;
+      font-size: 1.75rem;
+      text-align: justify;
+      width: 25%;
+      height: 35px;
+      border-radius: 4px;
+      background-color: rgb(11, 221, 11);
+      color: white;
+      display: inline-block;
+}
+
+.TotalWithdrawl{
+      padding-left: 1rem;
+      font-size: 1.75rem;
+      text-align: justify;
+      width: 25%;
+      height: 35px;
+      border-radius: 4px;
+      background-color: rgb(11, 221, 11);
+      color: white;
+      display: inline-block;
+}
+
+.Sort__btn {
+      width: 6%;
+      height: 40px;
+      font-size: 2rem;
+      /*margin: 2rem;*/
+      border-radius: 6px;
+      /*display: inline-block;*/
+      background-color: white;
+      border: 2px solid black;
       outline: darkgreen;
 }

@@ -36,7 +36,7 @@ const LogIn = function() {
     //possible to use the "back" button to navigate back to the original document.
     currentUser = account.get(userVal.value);
     console.log(currentUser);
-    console.log(userGreet.innerHTML = `Welcome ${currentUser.accountHolder}`);
+    console.log(userGreet.innerHTML = `Welcome back, ${currentUser.accountHolder}`);
     logInForm.innerHTML = '<button class="LogOutBtn">&rarr;</button>';
     displayDashboard();
 }
@@ -86,6 +86,12 @@ const displayDashboard = function(){
 
     initLoan(loan);
     quickFeatures.appendChild(loan);
+
+    var views = document.createElement('div');
+    views.classList.add('views');
+    document.body.appendChild(views);
+    initViews(views);
+
     checkAction();
 
 }
@@ -112,9 +118,11 @@ const getSummary = function(summary) {
     balance.innerHTML = `<h1>₹ ${balOutput}</h1> A/C: ${currentUser.accountNo}`;
 }
 
-const getTransactions = function(transactions) {
+const getTransactions = function(transactions, sort = false) {
     transactions.innerHTML = "";
-    currentUser.transaction.forEach((element, i) => {
+    const trans = sort ? currentUser.transaction.slice().sort((a, b) => a - b) 
+                       : currentUser.transaction.slice();
+    trans.forEach((element, i) => {
         const type = element > 0 ? 'Deposit' : 'Withdrawl';
         const row = `
             <div class="row">
@@ -153,6 +161,31 @@ const initLoan = function(loan) {
     loan.insertAdjacentHTML('afterbegin', form);
 }
 
+const initViews = function(views) {
+    const view = `
+        <form class="Sort">
+            <div class="totalDeposit" style="text-align: left; padding-left: 2rem; width: 25%; font-size: 2.25rem; display: inline-block;">
+                <b>Total Deposit: <div class="TotalDeposit"> ₹ ${currentUser.transaction.filter(k => k > 0).reduce((a, c) => a + c)}</div></b>
+            </div>
+            <div class="totalWithdrawl" style="text-align: left; padding-left: 2rem; width: 25%; font-size: 2.25rem; display: inline-block;">
+                <b>Total Withdrawl: <div class="TotalWithdrawl"> ₹ ${currentUser.transaction.filter(k => k < 0).reduce((a, c) => a + c)}</div></b>
+            </div>
+            <button class="Sort__btn">Sort ⇅</button>
+        </form>
+    `;
+    views.innerHTML = view;
+}
+
+const checkTotalDeposit = function() {
+    const TotalDeposit = document.querySelector('.TotalDeposit');
+    TotalDeposit.innerHTML = `₹ ${currentUser.transaction.filter(k => k > 0).reduce((a, c) => a + c)}`;
+}
+            
+const checkTotalWithdrawl = function() {
+    const TotalWithdrawl = document.querySelector('.TotalWithdrawl');
+    TotalWithdrawl.innerHTML = `₹ ${currentUser.transaction.filter(k => k < 0).reduce((a, c) => a + c)}`;
+}
+
 const checkAction = function() {
     const TransferBtn = document.querySelector('.Transfer__btn');
     const TransferAmount = document.querySelector('.TransferAmount');
@@ -186,6 +219,9 @@ const checkAction = function() {
             getSummary(summary);
             const transactions = document.querySelector('.transactions');
             getTransactions(transactions);
+
+            checkTotalDeposit();
+            checkTotalWithdrawl();
         }
         TransferAmount.value = "";
         TransferTo.value = "";
@@ -208,7 +244,18 @@ const checkAction = function() {
             getSummary(summary);
             const transactions = document.querySelector('.transactions');
             getTransactions(transactions);
+            
+            checkTotalDeposit();
+            checkTotalWithdrawl();
         }
         LoanAmount.value = "";
+    });
+    let click = 0;
+    const SortBtn = document.querySelector('.Sort__btn');
+    SortBtn.addEventListener('click', function(e){
+        e.preventDefault();
+        const transactions = document.querySelector('.transactions');
+        click++;
+        click % 2 ? getTransactions(transactions, true) : getTransactions(transactions);
     });
 }
