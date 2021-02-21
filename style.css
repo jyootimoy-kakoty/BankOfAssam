@@ -104,7 +104,7 @@ body {
 .transactions {
       margin: 2.5rem;
       width: 55%;
-      height: 300px;
+      height: 500px;
       display: inline-block;
       overflow: scroll;
 }
@@ -159,9 +159,15 @@ body {
       vertical-align: top;
 }
 
-.transfer {
+.quickFeatures {
       margin-top: 2.5rem;
       width: 40%;
+      height: 400px;
+      display: inline-block;
+      vertical-align: top;
+}
+
+.transfer {
       height: 200px;
       vertical-align: top;
       display: inline-block;
@@ -181,6 +187,7 @@ body {
       margin: 2rem;
       margin-left: 2rem;
       margin-right: 2rem;
+      margin-bottom: 1rem;
       float: right;
       border: 2px solid white; 
       border-radius: 4px;
@@ -192,6 +199,52 @@ body {
 }
 
 .Transfer__form button {
+      width: 10%;
+      height: 30px;
+      margin: 2rem;
+      margin-left: 2rem;
+      margin-right: 2rem;
+      margin-bottom: 1rem;
+      border-radius: 4px;
+      float: right;
+      border: 2px solid #f3f3f3;
+      outline: darkgreen;
+}
+
+.loan {
+      margin-top: 1rem;
+      height: 200px;
+      width: 100%;
+      vertical-align: top;
+      display: inline-block;
+      border-radius: 4px;
+      background-color: rgb(247, 176, 44);
+      
+}
+
+.Loan__form {
+      margin: 1.5rem;
+      vertical-align: middle;
+}
+
+.Loan__form input {
+      width: 30%;
+      height: 35px;
+      margin: 2rem;
+      margin-left: 2rem;
+      margin-right: 2rem;
+      float: right;
+      border: 2px solid white; 
+      border-radius: 4px;
+      background-color: rgb(252, 193, 85);
+      text-align: center;
+      color: white;
+      font-size: 2rem;
+      vertical-align: top;
+      outline: darkgreen;
+}
+
+.Loan__form button {
       width: 10%;
       height: 30px;
       margin: 2rem;

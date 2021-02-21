@@ -54,8 +54,13 @@ btnLogin.addEventListener('click', function(e){
 const displayDashboard = function(){
     var summary = document.createElement('div');
     summary.classList.add('summary');
+    var dashboard = document.createElement('div');
+    dashboard.classList.add('dashboard');
+    
     var transactions = document.createElement('div');
     transactions.classList.add('transactions');
+    var quickFeatures = document.createElement('div');
+    quickFeatures.classList.add('quickFeatures');
     var transfer = document.createElement('div');
     transfer.classList.add('transfer');
     var loan = document.createElement('div');
@@ -71,13 +76,16 @@ const displayDashboard = function(){
     summary.appendChild(balance);
     getSummary(summary);
 
+    document.body.appendChild(dashboard);
     getTransactions(transactions);
-    document.body.appendChild(transactions);
+    dashboard.appendChild(transactions);
 
+    dashboard.appendChild(quickFeatures);
     initTransfer(transfer);
-    document.body.appendChild(transfer);
+    quickFeatures.appendChild(transfer);
 
-    document.body.appendChild(loan);
+    initLoan(loan);
+    quickFeatures.appendChild(loan);
     checkAction();
 
 }
@@ -105,7 +113,7 @@ const getSummary = function(summary) {
 }
 
 const getTransactions = function(transactions) {
-    //transactions.innerHTML = "";
+    transactions.innerHTML = "";
     currentUser.transaction.forEach((element, i) => {
         const type = element > 0 ? 'Deposit' : 'Withdrawl';
         const row = `
@@ -122,15 +130,27 @@ const getTransactions = function(transactions) {
 const initTransfer = function(transfer) {
     const form = `
         <form class="Transfer__form">
-            <div style="text-align: center; width: 100%; font-size: 2.5rem;">Transfer Money</div>                    
+            <div style="text-align: center; width: 100%; font-size: 2.5rem;"><b>Transfer Money</b></div>                    
             <button class="Transfer__btn">&rarr;</button>
-            <input class="TransferAmount" type="text" maxlength="16" required/>
-            <input class="TransferTo" type="text" maxlength="16" required/>
+            <input class="TransferAmount" type="number" maxlength="16" required/>
+            <input class="TransferTo" type="number" maxlength="16" required/>
         </form>
         <div style="margin-left: 7rem; display: inline-block; width: 40%; font-size: 2rem;">Transfer To</div>
         <div style="margin: 0; display: inline-block; width: 40%; font-size: 2rem;">Amount</div>
     `;
     transfer.insertAdjacentHTML('afterbegin', form);
+}
+
+const initLoan = function(loan) {
+    const form = `
+        <form class="Loan__form">
+            <div style="text-align: center; width: 100%; font-size: 2.5rem;"><b>Request Loan</b></div>
+            <button class="Loan__btn">&rarr;</button>
+            <input class="LoanAmount" type="number" maxlength="16" required/>
+            <div style="margin: 2rem; float: right; display: inline-block; width: 30%; font-size: 2rem; text-align: justify;">Amount</div>
+        </form>
+    `;
+    loan.insertAdjacentHTML('afterbegin', form);
 }
 
 const checkAction = function() {
@@ -167,5 +187,28 @@ const checkAction = function() {
             const transactions = document.querySelector('.transactions');
             getTransactions(transactions);
         }
+        TransferAmount.value = "";
+        TransferTo.value = "";
+    });
+
+    const LoanBtn = document.querySelector('.Loan__btn');
+    const LoanAmount = document.querySelector('.LoanAmount');
+    LoanBtn.addEventListener('click', function(e){
+        e.preventDefault();
+        console.log(currentUser);
+        const balOutput = currentUser.transaction.reduce(bal);
+        console.log(LoanAmount.value);
+        if(LoanAmount.value <= 0) {
+            alert('Enter Valid Amount'); return;
+        }
+        else {
+            currentUser.transaction.push(1 * LoanAmount.value);
+            alert('Loan Approved. Initiating Transfer.');
+            const summary = document.querySelector('.summary');
+            getSummary(summary);
+            const transactions = document.querySelector('.transactions');
+            getTransactions(transactions);
+        }
+        LoanAmount.value = "";
     });
 }
