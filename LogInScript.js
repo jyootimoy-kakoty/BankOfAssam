@@ -38,6 +38,8 @@ const LogIn = function() {
     console.log(currentUser);
     console.log(userGreet.innerHTML = `Welcome back, ${currentUser.accountHolder}`);
     logInForm.innerHTML = '<button class="LogOutBtn">&rarr;</button>';
+    const footer = document.getElementById('footer');
+    footer.remove();
     displayDashboard();
 }
 
@@ -91,7 +93,7 @@ const displayDashboard = function(){
     views.classList.add('views');
     document.body.appendChild(views);
     initViews(views);
-
+    initFooter();
     checkAction();
 
 }
@@ -184,6 +186,19 @@ const checkTotalDeposit = function() {
 const checkTotalWithdrawl = function() {
     const TotalWithdrawl = document.querySelector('.TotalWithdrawl');
     TotalWithdrawl.innerHTML = `₹ ${currentUser.transaction.filter(k => k < 0).reduce((a, c) => a + c)}`;
+}
+const initFooter = function() {
+    var footer = document.createElement('section');
+    //footer.classList.add('footer');
+    footer.setAttribute("id", "footer");
+    //footer.id = 'footer';
+    const foot = `
+        <div class="footer container">
+            All rights Reserver © BankOfAssam 2021
+        </div>
+    `;
+    footer.innerHTML = foot;
+    document.body.appendChild(footer);
 }
 
 const checkAction = function() {
