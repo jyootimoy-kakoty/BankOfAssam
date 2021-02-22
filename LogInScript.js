@@ -99,13 +99,26 @@ const displayDashboard = function(){
 }
 
 var datetime = function() {
-    var currentdate = new Date(); 
-    return currentdate.getDate() + "/"
-            + (currentdate.getMonth()+1)  + "/" 
+    var currentdate = new Date();
+    const options = {
+        hour: 'numeric',
+        minute: 'numeric',
+        second: 'numeric',
+        day: 'numeric',
+        month: 'numeric',
+        year: 'numeric',
+        weekday: 'long'
+    };
+    const lang = navigator.language; // We can replace 'IST' with lang variable
+    return (new Intl.DateTimeFormat('IST', options).format(currentdate));  //options is optional
+    /*
+    return `${currentdate.getDate()}`.padStart(2, 0) + "/"
+            + `${(currentdate.getMonth()+1)}`.padStart(2, 0)  + "/" 
             + currentdate.getFullYear() + " @ "  
-            + currentdate.getHours() + ":"  
-            + currentdate.getMinutes() + ":" 
-            + currentdate.getSeconds();
+            + `${currentdate.getHours()}`.padStart(2, 0) + ":"  
+            + `${currentdate.getMinutes()}`.padStart(2, 0) + ":" 
+            + `${currentdate.getSeconds()}`.padStart(2, 0);
+    */
 }
 
 const getSummary = function(summary) {
@@ -117,7 +130,7 @@ const getSummary = function(summary) {
     
     const balOutput = currentUser.transaction.reduce(bal);
     statement.innerHTML = "<h1>Balance</h1>" + "As of: " + datetime();
-    balance.innerHTML = `<h1>₹ ${balOutput}</h1> A/C: ${currentUser.accountNo}`;
+    balance.innerHTML = `<h1>₹ ${Number.parseFloat(balOutput).toFixed(2)} </h1> A/C: ${currentUser.accountNo}`;
 }
 
 const getTransactions = function(transactions, sort = false) {
