@@ -7,6 +7,7 @@ const LogInPass = document.querySelector('.LogIn__input-pass');
 
 
 let currentUser = null;
+let time = 300;
 let bal = (accumulator, currentValue) => accumulator + currentValue;
 
 const users = new Map([
@@ -50,7 +51,7 @@ const LogIn = function() {
 }
 
 const sessionTimeout = function() {
-    let time = 300;
+    
     const timer = document.querySelector('.timer');
     //call the timer every second
     const sessionTimer = setInterval(function() {
@@ -58,7 +59,7 @@ const sessionTimeout = function() {
         const sec = String(time % 60).padStart(2, 0);
     
         //In each call print remaining time
-        console.log(timer.textContent, min, sec);
+        //console.log(timer.textContent, min, sec);
         timer.textContent = `${min}:${sec}`;
 
         time--;
@@ -248,6 +249,7 @@ const checkAction = function() {
     const TransferTo = document.querySelector('.TransferTo');
     TransferBtn.addEventListener('click', function(e){
         e.preventDefault();
+        time = 300;
         console.log(currentUser);
         const balOutput = currentUser.transaction.reduce(bal);
         console.log(TransferTo.value);
@@ -270,7 +272,7 @@ const checkAction = function() {
             balOutput >= TransferAmount.value
             ? currentUser.transaction.push(-1 * TransferAmount.value)
             && transferNow.push(Number(TransferAmount.value)) && alert('Transfer Successful')
-            : alert('Low Balance!');
+            : alert('Low Balance!')
             const summary = document.querySelector('.summary');
             getSummary(summary);
             const transactions = document.querySelector('.transactions');
@@ -287,6 +289,7 @@ const checkAction = function() {
     const LoanAmount = document.querySelector('.LoanAmount');
     LoanBtn.addEventListener('click', function(e){
         e.preventDefault();
+        time = 300;
         console.log(currentUser);
         const balOutput = currentUser.transaction.reduce(bal);
         console.log(LoanAmount.value);
@@ -310,6 +313,7 @@ const checkAction = function() {
     const SortBtn = document.querySelector('.Sort__btn');
     SortBtn.addEventListener('click', function(e){
         e.preventDefault();
+        time = 300;
         const transactions = document.querySelector('.transactions');
         click++;
         click % 2 ? getTransactions(transactions, true) : getTransactions(transactions);
