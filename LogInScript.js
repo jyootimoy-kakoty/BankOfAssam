@@ -37,10 +37,38 @@ const LogIn = function() {
     currentUser = account.get(userVal.value);
     console.log(currentUser);
     console.log(userGreet.innerHTML = `Welcome back, ${currentUser.accountHolder}`);
-    logInForm.innerHTML = '<button class="LogOutBtn">&rarr;</button>';
+    logInForm.innerHTML = `
+        <div class="session"><h1>Session Expires in: </h1>
+            <div class="timer"></div>
+        </div>
+        '<button class="LogOutBtn">&rarr;</button>
+    `;
+    sessionTimeout();
     const footer = document.getElementById('footer');
     footer.remove();
     displayDashboard();
+}
+
+const sessionTimeout = function() {
+    let time = 300;
+    const timer = document.querySelector('.timer');
+    //call the timer every second
+    const sessionTimer = setInterval(function() {
+        const min = String(Math.trunc(time / 60)).padStart(2, 0);
+        const sec = String(time % 60).padStart(2, 0);
+    
+        //In each call print remaining time
+        console.log(timer.textContent, min, sec);
+        timer.textContent = `${min}:${sec}`;
+
+        time--;
+
+        if (time === -1) {
+            clearInterval(sessionTimer);
+            const btnLogOut = document.querySelector('.LogOutBtn');
+            btnLogOut.click();
+        }
+    }, 1000);
 }
 
 btnLogin.addEventListener('click', function(e){
