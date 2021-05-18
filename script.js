@@ -1,3 +1,4 @@
+/*Tabbed Component Implementation */
 const feature_tabs = document.querySelectorAll('.feature_btn');
 const tabsContainer = document.querySelector('.feature-items');
 const feature_description = document.querySelectorAll('.feature-description');
@@ -21,19 +22,36 @@ tabsContainer.addEventListener('click', function(e){
     .classList.add('content_tab-active');
 });
 
-const getT = function(transactions, sort = false) {
-    transactions.innerHTML = "";
-    const trans = sort ? currentUser.transaction.slice().sort((a, b) => a - b) 
-                       : currentUser.transaction.slice();
-    trans.forEach((element, i) => {
-        const type = element > 0 ? 'Deposit' : 'Withdrawl';
-        const row = `
-            <div class="row">
-                <div class="${type}">${type}</div>
-                <div class="transDate"><i>${datetime()}</i></div>
-                <div class="value"> ₹ ${element}</div>
-            </div>
-        `;
-        transactions.insertAdjacentHTML('afterbegin', row);
-    });
-}
+/*Activate one tab at a time on mouse hover*/
+tabsContainer.addEventListener('mouseover', function(e){
+    //e.preventDefault();
+    if(e.target.classList.contains('feature_btn')) {
+        const nav_link = e.target.closest('.feature_btn');
+        //const siblings = nav_link.closest('.feature-items').querySelectorAll('.feature_btn');
+        const siblings = e.currentTarget.querySelectorAll('.feature_btn');
+        console.log(e.currentTarget);
+        console.log(nav_link);
+        //console.log(clicked.classList);
+        //console.log(e.target.parentElement);
+
+        //Deactivate other tabs on hover
+        siblings.forEach(tab => {
+            if(tab !== nav_link) tab.style.opacity = 0.5;
+        });  
+    }
+});
+
+tabsContainer.addEventListener('mouseout', function(e){
+    //e.preventDefault();
+    if(e.target.classList.contains('feature_btn')) {
+        //const nav_link = e.target.closest('.feature_btn');
+        //const siblings = nav_link.closest('.feature-items').querySelectorAll('.feature_btn');
+        const siblings = e.currentTarget.querySelectorAll('.feature_btn');
+
+        //Active tabs on mouse out
+        siblings.forEach(tab => {
+            tab.style.opacity = 1;
+        });
+        
+    }
+});
