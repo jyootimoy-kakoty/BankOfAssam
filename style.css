@@ -43,6 +43,85 @@ body {
       align-items: center;/*margin: auto;*/
 }
 
+.features {
+      position: relative;
+      width: 90%;
+      height: 200px;
+      margin: 10rem;
+      text-align: center;
+      justify-content: center;
+}
+
+.feature-items * {
+      display: inline-block;
+      justify-content: center;
+}
+
+.feature-items button {
+      width: fit-content;
+      height: 40px;
+      padding-right: 1rem;
+      font-size: 2rem;
+      margin-top: 2rem;
+      border-radius: 6px;
+      /*display: inline-block;*/
+      background-color: white;
+      border: 2px solid black;
+      /*outline: darkgreen;*/
+}
+
+.feature-items button:not(:last-child) {
+      margin-right: 2rem;
+}
+
+.feature-items span {
+      color: green;
+      margin-left: 1rem;
+      margin-right: 1rem;
+}
+
+.feature_tab-active {
+      position: relative;
+      top: -20px;
+}
+
+.feature-description {
+      display: inline-block;
+      justify-content: center;
+      position: absolute;
+      top: 0;
+      margin-top: 10px;
+      width: 100%;
+      height: 400px;
+      font-size: large;
+      color: crimson; 
+      visibility: hidden;
+}
+
+.tab-1-content {
+      left: 0;
+}
+
+.tab-2-content {
+      left: 0;
+}
+
+.tab-3-content {
+      left: 0;
+}
+
+.tab-4-content {
+      left: 0;
+}
+
+.feature-detail {
+      position: relative;
+}
+
+.content_tab-active {
+      visibility: visible;
+}
+
 .logIn__form {
       margin: 1.5rem;
       margin-right: 0;
