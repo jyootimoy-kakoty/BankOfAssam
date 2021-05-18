@@ -19,7 +19,11 @@ body {
 
 .banner {
       margin: 1rem;
+}
 
+.sticky {
+      position: sticky;
+      top: 0;
 }
 
 .banner-items * {

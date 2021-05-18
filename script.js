@@ -55,3 +55,23 @@ tabsContainer.addEventListener('mouseout', function(e){
         
     }
 });
+
+/*Stick Navigation Bar Using Intersection Observer API*/
+//const banner = document.getElementById('banner')
+const observerCallback = function(entries, scrollObserver) {
+    entries.forEach(entry => {
+        console.log(entry);
+    });
+    const [entry] = entries;
+    if(!entry.isIntersecting) banner.classList.add('sticky');
+    else banner.classList.remove('sticky');
+};
+
+const observerOptions = {
+    root: null,
+    threshold: 0.0,
+    rootMargin: '-100px',
+};
+
+const scrollObserver = new IntersectionObserver(observerCallback, observerOptions);
+scrollObserver.observe(features)
