@@ -58,6 +58,8 @@ tabsContainer.addEventListener('mouseout', function(e){
 
 /*Stick Navigation Bar Using Intersection Observer API*/
 //const banner = document.getElementById('banner')
+const navHeight = banner.getBoundingClientRect().height;
+console.log(navHeight);
 const observerCallback = function(entries, scrollObserver) {
     entries.forEach(entry => {
         console.log(entry);
@@ -70,8 +72,30 @@ const observerCallback = function(entries, scrollObserver) {
 const observerOptions = {
     root: null,
     threshold: 0.0,
-    rootMargin: '-100px',
+    rootMargin: `-${navHeight}px`,
 };
 
 const scrollObserver = new IntersectionObserver(observerCallback, observerOptions);
 scrollObserver.observe(features)
+
+/*Reveal Elements on Scroll*/
+const revealSection = function(entries, observer) {
+    entries.forEach(entry => {
+        console.log(entry);
+    });
+    const [entry] = entries;
+    if(!entry.isIntersecting) return;
+    entry.target.classList.remove('hidden');
+};
+
+const observerOptionList = {
+    root: null,
+    threshold: 0.1,
+};
+
+const scrollAnimationObserver = new IntersectionObserver(revealSection, observerOptionList);
+const allSections = document.querySelectorAll('.section');
+allSections.forEach(function(section) {
+    scrollAnimationObserver.observe(section);
+    section.classList.add('hidden');
+});

@@ -17,6 +17,11 @@ body {
       background-color: #f3f3f3;
 }
 
+.hidden {
+      opacity: 0;
+      transform: translateY(5rem);
+}
+
 .banner {
       margin: 1rem;
 }
@@ -24,6 +29,7 @@ body {
 .sticky {
       position: sticky;
       top: 0;
+      background-color: white;
 }
 
 .banner-items * {

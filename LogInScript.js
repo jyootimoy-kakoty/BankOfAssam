@@ -83,6 +83,7 @@ btnLogin.addEventListener('click', function(e){
 });
 
 const displayDashboard = function(){
+    var dashboardSection = document.getElementById('dashboardSection');
     var summary = document.createElement('div');
     summary.classList.add('summary');
     var dashboard = document.createElement('div');
@@ -102,12 +103,12 @@ const displayDashboard = function(){
     var balance = document.createElement('div');
     balance.classList.add('balance');
 
-    document.body.appendChild(summary);
+    dashboardSection.appendChild(summary);
     summary.appendChild(statement);
     summary.appendChild(balance);
     getSummary(summary);
 
-    document.body.appendChild(dashboard);
+    dashboardSection.appendChild(dashboard);
     getTransactions(transactions);
     dashboard.appendChild(transactions);
 
